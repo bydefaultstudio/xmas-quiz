@@ -1,0 +1,58 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  max-width: 600px;
+  margin: 2rem auto;
+}
+
+.option {
+  padding: 1.5rem;
+  border: 2px solid var(--color-black);
+  background: var(--color-white);
+  color: var(--color-black);
+  font-size: 1.1rem;
+  font-weight: 400;
+  border-radius: 8px;
+  text-align: left;
+  transition: all 0.2s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 80px;
+}
+
+.option:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.selected {
+  background: var(--color-black);
+  color: var(--color-white);
+  border-color: var(--color-black);
+}
+
+.correct {
+  background: var(--color-green);
+  color: var(--color-white);
+  border-color: var(--color-green);
+  cursor: default;
+}
+
+.wrong {
+  background: var(--color-red);
+  color: var(--color-white);
+  border-color: var(--color-red);
+  cursor: default;
+}
+
+.option:disabled {
+  cursor: not-allowed;
+}
+
+.checkmark,
+.cross {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+

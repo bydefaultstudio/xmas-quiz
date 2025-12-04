@@ -1,0 +1,178 @@
+.container {
+  min-height: 100vh;
+  background: var(--color-beige);
+  padding: 3rem 2rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3rem;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--color-black);
+}
+
+.backButton {
+  padding: 1rem 2rem;
+  background: var(--color-black);
+  color: var(--color-white);
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 700;
+  transition: all 0.2s ease;
+}
+
+.backButton:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.sortButtons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 3rem;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.sortButton {
+  padding: 1rem 2rem;
+  background: transparent;
+  border: 2px solid var(--color-black);
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-black);
+  transition: all 0.2s ease;
+}
+
+.sortButton:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.sortButton.active {
+  background: var(--color-black);
+  color: var(--color-white);
+}
+
+.leaderboard {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.entry {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem;
+  background: var(--color-white);
+  border: 2px solid var(--color-black);
+  border-radius: 12px;
+  transition: all 0.2s ease;
+}
+
+.entry:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.rank {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-black);
+  min-width: 60px;
+  text-align: center;
+}
+
+.avatarFrame {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid var(--color-black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-white);
+  flex-shrink: 0;
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.playerInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.playerName {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-black);
+  margin: 0;
+}
+
+.stats {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.stat {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.statLabel {
+  font-size: 1rem;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.statValue {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-black);
+}
+
+.helperStats {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.helperStat {
+  font-size: 0.9rem;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.helperStat span {
+  font-weight: 700;
+  color: var(--color-black);
+}
+
+.empty {
+  text-align: center;
+  padding: 4rem 2rem;
+  font-size: 1.2rem;
+  color: rgba(0, 0, 0, 0.6);
+}
+

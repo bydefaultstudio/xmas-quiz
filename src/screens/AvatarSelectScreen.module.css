@@ -1,0 +1,23 @@
+.container {
+  min-height: 100vh;
+  padding: 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--color-beige);
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 3rem;
+  color: var(--color-black);
+  text-align: center;
+}
+
+.loading {
+  font-size: 1.5rem;
+  color: var(--color-black);
+  margin-top: 5rem;
+}
+
