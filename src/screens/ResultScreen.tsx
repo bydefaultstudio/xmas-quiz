@@ -17,6 +17,8 @@ export default function ResultScreen() {
     setCurrentScreen,
     allQuestions,
     startNewRound,
+    usedQuestionIds,
+    clearUsedQuestions,
   } = useGameStore();
 
   const { addResult } = useLeaderboardStore();
@@ -25,6 +27,8 @@ export default function ResultScreen() {
     const result = endRound();
     if (result) {
       addResult(result);
+      // Don't clear used questions here - keep them for "Play Again"
+      // They'll be cleared when starting a new game session (new player)
     }
   }, [endRound, addResult]);
 
@@ -33,7 +37,8 @@ export default function ResultScreen() {
 
   const handlePlayAgain = () => {
     if (allQuestions.length > 0) {
-      const randomQuestions = selectRandomQuestions(allQuestions, 5);
+      // Select new questions excluding already used ones during this active game
+      const randomQuestions = selectRandomQuestions(allQuestions, 5, usedQuestionIds);
       resetGame();
       startNewRound(randomQuestions);
       setCurrentScreen('question');
@@ -41,6 +46,8 @@ export default function ResultScreen() {
   };
 
   const handleNewPlayer = () => {
+    // Clear used questions when starting a new game session
+    clearUsedQuestions();
     resetGame();
     setCurrentScreen('avatar-select');
   };

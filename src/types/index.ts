@@ -51,5 +51,6 @@ export interface GameState {
   questionStates: QuestionState[];
   friendSelected: Player | null;
   multipleChoiceActive: boolean;
+  usedQuestionIds: string[]; // Track questions used during active game
 }
 

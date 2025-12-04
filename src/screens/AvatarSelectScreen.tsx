@@ -8,7 +8,7 @@ import AvatarSelector from '@/components/AvatarSelector';
 import styles from './AvatarSelectScreen.module.css';
 
 export default function AvatarSelectScreen() {
-  const { setActivePlayer, setAllQuestions, allQuestions, startNewRound } = useGameStore();
+  const { setActivePlayer, setAllQuestions, allQuestions, startNewRound, usedQuestionIds } = useGameStore();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -39,8 +39,8 @@ export default function AvatarSelectScreen() {
     
     setActivePlayer(player);
     
-    // Start a new round with random questions
-    const randomQuestions = selectRandomQuestions(allQuestions, 5);
+    // Start a new round with random questions, excluding already used ones
+    const randomQuestions = selectRandomQuestions(allQuestions, 5, usedQuestionIds);
     startNewRound(randomQuestions);
   };
 

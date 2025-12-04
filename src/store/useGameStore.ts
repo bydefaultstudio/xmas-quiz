@@ -19,6 +19,7 @@ interface QuizStore extends GameState {
   calculateScore: () => { player: number; friend: number };
   endRound: () => RoundResult | null;
   resetGame: () => void;
+  clearUsedQuestions: () => void;
 }
 
 const initialQuestionState: QuestionState = {
@@ -40,6 +41,7 @@ const initialState: GameState = {
   questionStates: [],
   friendSelected: null,
   multipleChoiceActive: false,
+  usedQuestionIds: [],
 };
 
 export const useGameStore = create<QuizStore>()(
@@ -51,7 +53,12 @@ export const useGameStore = create<QuizStore>()(
       setAllQuestions: (questions) => set({ allQuestions: questions }),
 
       setActivePlayer: (player) => {
-        set({ activePlayer: player, currentScreen: 'question' });
+        // When selecting a new player, clear used questions to start fresh
+        set({ 
+          activePlayer: player, 
+          currentScreen: 'question',
+          usedQuestionIds: [],
+        });
       },
 
       setCurrentScreen: (screen) => set({ currentScreen: screen }),
@@ -61,12 +68,22 @@ export const useGameStore = create<QuizStore>()(
           ...initialQuestionState,
           questionId: q.id,
         }));
+        
+        // Mark these questions as used during the active game
+        const { usedQuestionIds } = get();
+        const newQuestionIds = questions.map((q) => q.id);
+        const updatedUsedIds = [
+          ...usedQuestionIds,
+          ...newQuestionIds.filter((id) => !usedQuestionIds.includes(id)),
+        ];
+        
         set({
           currentRound: questions,
           currentQuestionIndex: 0,
           questionStates: states,
           multipleChoiceActive: false,
           friendSelected: null,
+          usedQuestionIds: updatedUsedIds,
         });
       },
 
@@ -207,7 +224,12 @@ export const useGameStore = create<QuizStore>()(
           ...initialState,
           activePlayer: get().activePlayer, // Keep player selected
           currentScreen: 'question',
+          usedQuestionIds: [], // Reset used questions when starting fresh
         });
+      },
+
+      clearUsedQuestions: () => {
+        set({ usedQuestionIds: [] });
       },
     }),
     {

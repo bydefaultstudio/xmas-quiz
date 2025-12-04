@@ -70,9 +70,28 @@ export function shuffleArray<T>(array: T[]): T[] {
   return shuffled;
 }
 
-export function selectRandomQuestions(questions: Question[], count: number = 5): Question[] {
-  const shuffled = shuffleArray(questions);
-  return shuffled.slice(0, count).map(q => ({
+export function selectRandomQuestions(
+  questions: Question[],
+  count: number = 5,
+  excludeIds: string[] = []
+): Question[] {
+  // Filter out already used questions
+  const availableQuestions = questions.filter(
+    (q) => !excludeIds.includes(q.id)
+  );
+
+  // If we don't have enough questions, reset and use all questions
+  if (availableQuestions.length < count) {
+    const shuffled = shuffleArray(questions);
+    return shuffled.slice(0, count).map((q) => ({
+      ...q,
+      options: shuffleArray(q.options), // Shuffle options for each question
+    }));
+  }
+
+  // Select from available questions
+  const shuffled = shuffleArray(availableQuestions);
+  return shuffled.slice(0, count).map((q) => ({
     ...q,
     options: shuffleArray(q.options), // Shuffle options for each question
   }));
