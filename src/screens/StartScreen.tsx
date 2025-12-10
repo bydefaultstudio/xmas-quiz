@@ -1,7 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useGameStore } from '@/store/useGameStore';
+import { useLeaderboardStore } from '@/store/useLeaderboardStore';
 import InstructionsModal from '@/components/InstructionsModal';
 import SettingsModal from '@/components/SettingsModal';
 import Toast from '@/components/Toast';
@@ -10,12 +11,23 @@ import styles from './StartScreen.module.css';
 
 export default function StartScreen() {
   const { setCurrentScreen } = useGameStore();
+  const { results } = useLeaderboardStore();
   const [instructionsOpen, setInstructionsOpen] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
+  const [hasLeaderboardData, setHasLeaderboardData] = useState(false);
+
+  // Check if leaderboard has data
+  useEffect(() => {
+    setHasLeaderboardData(results.length > 0);
+  }, [results.length]);
 
   const handleStartGame = () => {
     setCurrentScreen('player-setup');
+  };
+
+  const handleOpenLeaderboard = () => {
+    setCurrentScreen('leaderboard');
   };
 
   const handleOpenInstructions = () => {
@@ -66,6 +78,11 @@ export default function StartScreen() {
             <button className={styles.button} onClick={handleOpenSettings}>
               Settings
             </button>
+            {hasLeaderboardData && (
+              <button className={styles.button} onClick={handleOpenLeaderboard}>
+                Leaderboard
+              </button>
+            )}
           </div>
         </div>
       </div>

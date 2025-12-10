@@ -4,6 +4,8 @@ import { useEffect } from 'react';
 import { useGameStore } from '@/store/useGameStore';
 import { useLeaderboardStore } from '@/store/useLeaderboardStore';
 import { usePlayerStore } from '@/store/usePlayerStore';
+import CheckIcon from '@/components/icons/CheckIcon';
+import CrossIcon from '@/components/icons/CrossIcon';
 import styles from './GameSummaryScreen.module.css';
 
 export default function GameSummaryScreen() {
@@ -123,7 +125,17 @@ export default function GameSummaryScreen() {
                             Question {index + 1}
                           </span>
                           <span className={styles.questionStatus}>
-                            {isCorrect ? '✔ Correct' : '✘ Wrong'}
+                            {isCorrect ? (
+                              <>
+                                <CheckIcon size={16} color="currentColor" className={styles.statusIcon} />
+                                Correct
+                              </>
+                            ) : (
+                              <>
+                                <CrossIcon size={16} color="currentColor" className={styles.statusIcon} />
+                                Wrong
+                              </>
+                            )}
                           </span>
                           <span className={styles.questionPoints}>
                             {state.pointsPlayer} points

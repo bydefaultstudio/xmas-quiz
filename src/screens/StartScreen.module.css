@@ -17,7 +17,7 @@
   font-weight: 700;
   color: var(--color-black);
   margin-bottom: 3rem;
-  font-family: 'Bugrino', serif;
+  font-family: 'Recife', serif;
 }
 
 .buttonGroup {
@@ -29,16 +29,18 @@
 
 .startButton,
 .button {
-  padding: 1.5rem 4rem;
+  padding: var(--button-padding-xl);
   background: var(--color-black);
   color: var(--color-white);
-  border-radius: 8px;
-  font-size: 1.5rem;
+  font-size: var(--button-font-size-lg);
   font-weight: 700;
   transition: all 0.2s ease;
   cursor: pointer;
   min-width: 250px;
   border: 2px solid var(--color-black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .startButton:hover,

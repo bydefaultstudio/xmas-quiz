@@ -1,12 +1,11 @@
 .toast {
   position: fixed;
-  bottom: 2rem;
+  bottom: var(--spacing-lg);
   left: 50%;
   transform: translateX(-50%);
   background: var(--color-green);
   color: var(--color-white);
-  padding: 1rem 2rem;
-  border-radius: 8px;
+  padding: var(--button-padding-md);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
   z-index: 3000;
   animation: slideUp 0.3s ease-out;
@@ -15,7 +14,7 @@
 }
 
 .message {
-  font-size: 1rem;
+  font-size: var(--font-size-body);
   font-weight: 600;
 }
 
@@ -34,7 +33,7 @@
   .toast {
     bottom: 1rem;
     padding: 0.8rem 1.5rem;
-    font-size: 0.9rem;
+    font-size: var(--font-size-small);
   }
 }
 

@@ -1,6 +1,8 @@
 'use client';
 
 import { Question } from '@/types';
+import CheckIcon from './icons/CheckIcon';
+import CrossIcon from './icons/CrossIcon';
 import styles from './MultiChoiceGrid.module.css';
 
 interface MultiChoiceGridProps {
@@ -51,9 +53,23 @@ export default function MultiChoiceGrid({
             onClick={() => !isSubmitted && onSelect(option)}
             disabled={isSubmitted}
           >
-            <span>{option}</span>
-            {showCheckmark && <span className={styles.checkmark}>✓</span>}
-            {showCross && <span className={styles.cross}>✗</span>}
+            <span className={styles.contentWrapper}>
+              <span>{option}</span>
+              {showCheckmark && (
+                <CheckIcon
+                  size={20}
+                  color="currentColor"
+                  className={styles.checkmark}
+                />
+              )}
+              {showCross && (
+                <CrossIcon
+                  size={20}
+                  color="currentColor"
+                  className={styles.cross}
+                />
+              )}
+            </span>
           </button>
         );
       })}

@@ -3,6 +3,8 @@
 import { useEffect } from 'react';
 import { useGameStore } from '@/store/useGameStore';
 import { useLeaderboardStore } from '@/store/useLeaderboardStore';
+import CheckIcon from '@/components/icons/CheckIcon';
+import CrossIcon from '@/components/icons/CrossIcon';
 import styles from './ScoreboardScreen.module.css';
 
 export default function ScoreboardScreen() {
@@ -93,7 +95,11 @@ export default function ScoreboardScreen() {
                             state.isCorrect ? styles.correct : styles.wrong
                           }`}
                         >
-                          {state.isCorrect ? '✓' : '✗'}
+                          {state.isCorrect ? (
+                            <CheckIcon size={14} color="currentColor" />
+                          ) : (
+                            <CrossIcon size={14} color="currentColor" />
+                          )}
                         </span>
                       ))}
                     </div>

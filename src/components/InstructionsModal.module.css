@@ -14,8 +14,7 @@
 
 .modal {
   background: var(--color-beige);
-  border: 2px solid var(--color-black);
-  border-radius: 12px;
+  border: var(--border-width) solid var(--border-color);
   max-width: 700px;
   width: 100%;
   max-height: 90vh;
@@ -87,15 +86,17 @@
 }
 
 .closeButton {
-  padding: 1rem 3rem;
+  padding: var(--button-padding-md);
   background: var(--color-black);
   color: var(--color-white);
-  border: 2px solid var(--color-black);
-  border-radius: 8px;
-  font-size: 1.2rem;
-  font-weight: 700;
+  border: var(--border-width) solid var(--color-black);
+  font-size: var(--button-font-size-md);
+  font-weight: var(--font-weight-bold);
   cursor: pointer;
   transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .closeButton:hover {

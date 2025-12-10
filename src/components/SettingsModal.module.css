@@ -14,8 +14,7 @@
 
 .modal {
   background: var(--color-beige);
-  border: 2px solid var(--color-black);
-  border-radius: 12px;
+  border: var(--border-width) solid var(--border-color);
   max-width: 600px;
   width: 100%;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
@@ -45,23 +44,25 @@
 }
 
 .description {
-  font-size: 1rem;
+  font-size: var(--font-size-body);
   line-height: 1.6;
   color: rgba(0, 0, 0, 0.7);
   margin-bottom: 1.5rem;
 }
 
 .resetButton {
-  padding: 1rem 2rem;
+  padding: var(--button-padding-md);
   background: var(--color-red);
   color: var(--color-white);
-  border: 2px solid var(--color-red);
-  border-radius: 8px;
-  font-size: 1.1rem;
-  font-weight: 700;
+  border: var(--border-width) solid var(--color-red);
+  font-size: var(--button-font-size-md);
+  font-weight: var(--font-weight-bold);
   cursor: pointer;
   transition: all 0.2s ease;
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .resetButton:hover {
@@ -76,15 +77,17 @@
 }
 
 .closeButton {
-  padding: 1rem 3rem;
+  padding: var(--button-padding-md);
   background: var(--color-black);
   color: var(--color-white);
-  border: 2px solid var(--color-black);
-  border-radius: 8px;
-  font-size: 1.2rem;
-  font-weight: 700;
+  border: var(--border-width) solid var(--color-black);
+  font-size: var(--button-font-size-md);
+  font-weight: var(--font-weight-bold);
   cursor: pointer;
   transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .closeButton:hover {

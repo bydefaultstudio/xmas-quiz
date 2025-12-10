@@ -14,8 +14,8 @@
 
 .modal {
   background: var(--color-beige);
-  border-radius: 16px;
-  padding: 3rem;
+  border: var(--border-width) solid var(--border-color);
+  padding: var(--spacing-xl);
   max-width: 600px;
   width: 100%;
   max-height: 90vh;
@@ -39,12 +39,11 @@
 }
 
 .playerButton {
-  padding: 1.5rem;
+  padding: var(--spacing-md);
   background: var(--color-white);
-  border: 2px solid var(--color-black);
-  border-radius: 8px;
-  font-size: 1.2rem;
-  font-weight: 700;
+  border: var(--border-width) solid var(--border-color);
+  font-size: var(--button-font-size-md);
+  font-weight: var(--font-weight-bold);
   color: var(--color-black);
   cursor: pointer;
   transition: all 0.2s ease;
@@ -57,16 +56,19 @@
 }
 
 .closeButton {
-  margin-top: 2rem;
+  margin-top: var(--spacing-lg);
   width: 100%;
-  padding: 1rem;
+  padding: var(--button-padding-md);
   background: var(--color-black);
   color: var(--color-white);
-  border-radius: 8px;
-  font-size: 1.1rem;
-  font-weight: 700;
+  border: var(--border-width) solid var(--color-black);
+  font-size: var(--button-font-size-md);
+  font-weight: var(--font-weight-bold);
   transition: all 0.2s ease;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .closeButton:hover {

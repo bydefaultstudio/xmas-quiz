@@ -16,16 +16,18 @@
 }
 
 .endGameButton {
-  padding: 1rem;
+  padding: var(--spacing-sm);
   background: var(--color-red);
   color: var(--color-white);
-  border: 2px solid var(--color-red);
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: 700;
+  border: var(--border-width) solid var(--color-red);
+  font-size: var(--button-font-size-sm);
+  font-weight: var(--font-weight-bold);
   transition: all 0.2s ease;
   flex: 1;
   min-width: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .endGameButton:hover {
@@ -34,14 +36,16 @@
 
 .headerButton {
   flex: 1;
-  padding: 1rem;
+  padding: var(--spacing-sm);
   background: transparent;
-  border: 2px solid var(--color-black);
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: 700;
+  border: var(--border-width) solid var(--border-color);
+  font-size: var(--button-font-size-sm);
+  font-weight: var(--font-weight-bold);
   color: var(--color-black);
   transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .headerButton:hover:not(:disabled) {
@@ -57,7 +61,6 @@
   background: var(--color-black);
   color: var(--color-white);
   padding: 0.5rem 1rem;
-  border-radius: 4px;
 }
 
 .content {
@@ -84,7 +87,7 @@
 }
 
 .playerProgress {
-  font-size: 1rem;
+  font-size: var(--font-size-body);
   color: rgba(0, 0, 0, 0.6);
   font-style: italic;
 }
@@ -122,10 +125,9 @@
 
 .textInput {
   width: 100%;
-  padding: 1.5rem;
-  border: 2px solid var(--color-black);
-  border-radius: 8px;
-  font-size: 1.2rem;
+  padding: var(--spacing-md);
+  border: var(--border-width) solid var(--border-color);
+  font-size: var(--button-font-size-md);
   background: var(--color-white);
   transition: all 0.2s ease;
 }
@@ -157,32 +159,33 @@
   right: 1.5rem;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 1.5rem;
-  color: var(--color-white);
-  font-weight: bold;
   pointer-events: none;
+  display: flex;
+  align-items: center;
 }
 
 .correctAnswer {
-  margin-top: 1rem;
-  padding: 1rem;
+  margin-top: var(--spacing-sm);
+  padding: var(--spacing-sm);
   background: var(--color-green);
   color: var(--color-white);
-  border-radius: 8px;
   font-size: 1.1rem;
   text-align: center;
 }
 
 .submitButton {
-  margin-top: 2rem;
-  padding: 1.5rem 4rem;
+  margin-top: var(--spacing-lg);
+  padding: var(--button-padding-xl);
   background: var(--color-black);
   color: var(--color-white);
-  border-radius: 8px;
-  font-size: 1.2rem;
-  font-weight: 700;
+  border: var(--border-width) solid var(--color-black);
+  font-size: var(--button-font-size-lg);
+  font-weight: var(--font-weight-bold);
   transition: all 0.2s ease;
   min-width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .submitButton:hover:not(.disabled) {

@@ -26,9 +26,8 @@
 
 .playerCard {
   background: var(--color-white);
-  border: 2px solid var(--color-black);
-  border-radius: 12px;
-  padding: 2rem;
+  border: var(--border-width) solid var(--border-color);
+  padding: var(--spacing-lg);
   transition: all 0.2s ease;
 }
 
@@ -77,9 +76,8 @@
 }
 
 .questionItem {
-  padding: 1.5rem;
-  border: 2px solid var(--color-black);
-  border-radius: 8px;
+  padding: var(--spacing-md);
+  border: var(--border-width) solid var(--border-color);
   background: var(--color-white);
 }
 
@@ -111,6 +109,13 @@
 .questionStatus {
   font-size: 1.1rem;
   font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.statusIcon {
+  flex-shrink: 0;
 }
 
 .questionItem.correct .questionStatus {
@@ -128,14 +133,14 @@
 }
 
 .questionHelp {
-  font-size: 1rem;
+  font-size: var(--font-size-body);
   color: rgba(0, 0, 0, 0.7);
   font-style: italic;
   margin-top: 0.5rem;
 }
 
 .friendNote {
-  font-size: 0.9rem;
+  font-size: var(--font-size-small);
   color: rgba(0, 0, 0, 0.6);
   margin-top: 0.5rem;
   padding-left: 1rem;
@@ -149,15 +154,18 @@
 }
 
 .leaderboardButton {
-  padding: 1.5rem 4rem;
+  padding: var(--button-padding-xl);
   background: var(--color-black);
   color: var(--color-white);
-  border-radius: 8px;
-  font-size: 1.5rem;
-  font-weight: 700;
+  border: var(--border-width) solid var(--color-black);
+  font-size: var(--button-font-size-lg);
+  font-weight: var(--font-weight-bold);
   transition: all 0.2s ease;
   cursor: pointer;
   min-width: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .leaderboardButton:hover {

@@ -37,14 +37,14 @@
 }
 
 .sectionSubtitle {
-  font-size: 1rem;
+  font-size: var(--font-size-body);
   color: rgba(0, 0, 0, 0.6);
   margin-bottom: 1.5rem;
   text-align: left;
 }
 
 .emptyMessage {
-  font-size: 1rem;
+  font-size: var(--font-size-body);
   color: rgba(0, 0, 0, 0.5);
   font-style: italic;
   text-align: center;
@@ -60,9 +60,8 @@
 
 .playerItem {
   background: var(--color-white);
-  border: 2px solid var(--color-black);
-  border-radius: 8px;
-  padding: 1.5rem;
+  border: var(--border-width) solid var(--border-color);
+  padding: var(--spacing-md);
 }
 
 .viewMode {
@@ -79,7 +78,7 @@
 }
 
 .playerNumber {
-  font-size: 1rem;
+  font-size: var(--font-size-body);
   font-weight: 400;
   color: rgba(0, 0, 0, 0.5);
   margin-left: 0.5rem;
@@ -95,18 +94,21 @@
 .removeButton,
 .saveButton,
 .cancelButton {
-  padding: 0.5rem 1.5rem;
-  border-radius: 6px;
-  font-size: 1rem;
-  font-weight: 700;
+  padding: var(--button-padding-sm);
+  font-size: var(--button-font-size-sm);
+  font-weight: var(--font-weight-bold);
   cursor: pointer;
   transition: all 0.2s ease;
+  border: var(--border-width) solid transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .editButton {
   background: var(--color-black);
   color: var(--color-white);
-  border: 2px solid var(--color-black);
+  border-color: var(--color-black);
 }
 
 .editButton:hover {
@@ -116,7 +118,7 @@
 .removeButton {
   background: transparent;
   color: var(--color-red);
-  border: 2px solid var(--color-red);
+  border-color: var(--color-red);
 }
 
 .removeButton:hover {
@@ -130,10 +132,9 @@
 }
 
 .nameInput {
-  padding: 1rem;
-  border: 2px solid var(--color-black);
-  border-radius: 6px;
-  font-size: 1.2rem;
+  padding: var(--spacing-sm);
+  border: var(--border-width) solid var(--border-color);
+  font-size: var(--button-font-size-md);
   font-family: inherit;
   width: 100%;
 }
@@ -152,7 +153,7 @@
 .saveButton {
   background: var(--color-green);
   color: var(--color-white);
-  border: 2px solid var(--color-green);
+  border-color: var(--color-green);
 }
 
 .saveButton:hover {
@@ -162,7 +163,7 @@
 .cancelButton {
   background: transparent;
   color: var(--color-black);
-  border: 2px solid var(--color-black);
+  border-color: var(--color-black);
 }
 
 .cancelButton:hover {
@@ -171,16 +172,18 @@
 
 .addButton {
   width: 100%;
-  padding: 1rem;
+  padding: var(--button-padding-md);
   background: transparent;
-  border: 2px dashed var(--color-black);
-  border-radius: 8px;
-  font-size: 1.2rem;
-  font-weight: 700;
+  border: var(--border-width) dashed var(--border-color);
+  font-size: var(--button-font-size-md);
+  font-weight: var(--font-weight-bold);
   color: var(--color-black);
   cursor: pointer;
   transition: all 0.2s ease;
-  margin-bottom: 2rem;
+  margin-bottom: var(--spacing-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .addButton:hover {
@@ -192,23 +195,24 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem;
+  padding: var(--spacing-md);
   background: var(--color-white);
-  border: 2px solid var(--color-black);
-  border-radius: 8px;
-  margin-bottom: 1rem;
+  border: var(--border-width) solid var(--border-color);
+  margin-bottom: var(--spacing-sm);
 }
 
 .selectButton {
-  padding: 0.5rem 1.5rem;
+  padding: var(--button-padding-sm);
   background: var(--color-green);
   color: var(--color-white);
-  border: 2px solid var(--color-green);
-  border-radius: 6px;
-  font-size: 1rem;
-  font-weight: 700;
+  border: var(--border-width) solid var(--color-green);
+  font-size: var(--button-font-size-sm);
+  font-weight: var(--font-weight-bold);
   cursor: pointer;
   transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .selectButton:hover:not(:disabled) {
@@ -227,15 +231,18 @@
 }
 
 .startButton {
-  padding: 1.5rem 4rem;
+  padding: var(--button-padding-xl);
   background: var(--color-black);
   color: var(--color-white);
-  border-radius: 8px;
-  font-size: 1.5rem;
-  font-weight: 700;
+  border: var(--border-width) solid var(--color-black);
+  font-size: var(--button-font-size-lg);
+  font-weight: var(--font-weight-bold);
   transition: all 0.2s ease;
   cursor: pointer;
   min-width: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .startButton:hover:not(:disabled) {

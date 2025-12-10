@@ -7,18 +7,17 @@
 }
 
 .option {
-  padding: 1.5rem;
+  padding: var(--button-padding);
   border: 2px solid var(--color-black);
   background: var(--color-white);
   color: var(--color-black);
   font-size: 1.1rem;
   font-weight: 400;
-  border-radius: 8px;
   text-align: left;
   transition: all 0.2s ease;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: center;
   min-height: 80px;
 }
 
@@ -27,32 +26,55 @@
 }
 
 .selected {
+  padding: var(--button-padding);
   background: var(--color-black);
   color: var(--color-white);
   border-color: var(--color-black);
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .correct {
+  padding: var(--button-padding);
   background: var(--color-green);
   color: var(--color-white);
   border-color: var(--color-green);
   cursor: default;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .wrong {
+  padding: var(--button-padding);
   background: var(--color-red);
   color: var(--color-white);
   border-color: var(--color-red);
   cursor: default;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .option:disabled {
   cursor: not-allowed;
 }
 
+.contentWrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--icon-gap);
+}
+
 .checkmark,
 .cross {
-  font-size: 1.5rem;
-  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 

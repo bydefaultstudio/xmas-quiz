@@ -6,6 +6,8 @@ import { useGameStore } from '@/store/useGameStore';
 import { useLeaderboardStore } from '@/store/useLeaderboardStore';
 import { PLAYERS } from '@/data/players';
 import { selectRandomQuestions } from '@/data/parseQuestions';
+import CheckIcon from '@/components/icons/CheckIcon';
+import CrossIcon from '@/components/icons/CrossIcon';
 import styles from './ResultScreen.module.css';
 
 export default function ResultScreen() {
@@ -95,9 +97,15 @@ export default function ResultScreen() {
                   <div className={styles.questionNumber}>Question {index + 1}</div>
                   <div className={styles.questionResult}>
                     {state.isCorrect ? (
-                      <span className={styles.resultText}>✓ Correct</span>
+                      <span className={styles.resultText}>
+                        <CheckIcon size={16} color="currentColor" className={styles.icon} />
+                        Correct
+                      </span>
                     ) : (
-                      <span className={styles.resultText}>✗ Wrong</span>
+                      <span className={styles.resultText}>
+                        <CrossIcon size={16} color="currentColor" className={styles.icon} />
+                        Wrong
+                      </span>
                     )}
                     <span className={styles.resultPoints}>
                       {state.pointsPlayer} points

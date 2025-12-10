@@ -5,6 +5,7 @@ import { useGameStore } from '@/store/useGameStore';
 import MultiChoiceGrid from '@/components/MultiChoiceGrid';
 import AskFriendModal from '@/components/AskFriendModal';
 import ScoreBadge from '@/components/ScoreBadge';
+import CheckIcon from '@/components/icons/CheckIcon';
 import styles from './QuestionScreen.module.css';
 
 export default function QuestionScreen() {
@@ -173,7 +174,11 @@ export default function QuestionScreen() {
                 autoFocus
               />
               {isSubmitted && currentState?.isCorrect && (
-                <span className={styles.checkmark}>✓</span>
+                <CheckIcon
+                  size={20}
+                  color="var(--color-white)"
+                  className={styles.checkmark}
+                />
               )}
               {isSubmitted && !currentState?.isCorrect && (
                 <div className={styles.correctAnswer}>

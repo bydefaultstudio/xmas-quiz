@@ -5,17 +5,21 @@ import { useGameStore } from '@/store/useGameStore';
 import { useLeaderboardStore } from '@/store/useLeaderboardStore';
 import { usePlayerStore } from '@/store/usePlayerStore';
 import { LeaderboardEntry } from '@/types';
+import ArrowLeftIcon from '@/components/icons/ArrowLeftIcon';
 import styles from './LeaderboardScreen.module.css';
 
 type SortOption = 'total' | 'average' | 'helper';
 
 export default function LeaderboardScreen() {
-  const { players, setCurrentScreen, startGame, resetGame, clearUsedQuestions } = useGameStore();
+  const { players, gameInProgress, setCurrentScreen, startGame, resetGame, clearUsedQuestions } = useGameStore();
   const { getLeaderboard } = useLeaderboardStore();
   const { getPlayerById, getPlayerDisplayNumber } = usePlayerStore();
   const [sortBy, setSortBy] = useState<SortOption>('total');
 
   const leaderboard = getLeaderboard();
+  
+  // Detect if accessed from Start Screen (no active game)
+  const fromStartScreen = !gameInProgress && players.length === 0;
 
   const getPlayerName = (playerId: string) => {
     // First try current game players
@@ -69,10 +73,23 @@ export default function LeaderboardScreen() {
     setCurrentScreen('start');
   };
 
+  const handleBackToStart = () => {
+    // Simply navigate back to Start Screen without modifying game state
+    setCurrentScreen('start');
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.content}>
-        <h1 className={styles.title}>Leaderboard</h1>
+        <div className={styles.header}>
+          <h1 className={styles.title}>Leaderboard</h1>
+          {fromStartScreen && (
+            <button className={styles.backButton} onClick={handleBackToStart}>
+              <ArrowLeftIcon size={16} color="currentColor" className={styles.backIcon} />
+              Back to Start
+            </button>
+          )}
+        </div>
 
         <div className={styles.sortButtons}>
           <button
@@ -146,14 +163,16 @@ export default function LeaderboardScreen() {
           )}
         </div>
 
-        <div className={styles.actions}>
-          <button className={styles.newGameButton} onClick={handleNewGame}>
-            New Game
-          </button>
-          <button className={styles.endGameButton} onClick={handleEndGame}>
-            End Game
-          </button>
-        </div>
+        {!fromStartScreen && (
+          <div className={styles.actions}>
+            <button className={styles.newGameButton} onClick={handleNewGame}>
+              New Game
+            </button>
+            <button className={styles.endGameButton} onClick={handleEndGame}>
+              End Game
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

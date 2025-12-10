@@ -17,7 +17,7 @@
 .avatarFrame {
   width: 150px;
   height: 150px;
-  border-radius: 50%;
+  border-radius: var(--avatar-border-radius);
   overflow: hidden;
   border: 3px solid var(--color-black);
   margin: 0 auto 1.5rem;
@@ -75,9 +75,8 @@
 }
 
 .questionItem {
-  padding: 1.5rem;
-  border: 2px solid var(--color-black);
-  border-radius: 8px;
+  padding: var(--spacing-md);
+  border: var(--border-width) solid var(--border-color);
   background: var(--color-white);
 }
 
@@ -108,6 +107,13 @@
 .resultText {
   font-size: 1.2rem;
   font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.resultText .icon {
+  flex-shrink: 0;
 }
 
 .questionItem.correct .resultText {
@@ -125,7 +131,7 @@
 }
 
 .helperInfo {
-  font-size: 0.9rem;
+  font-size: var(--font-size-small);
   color: rgba(0, 0, 0, 0.6);
   font-style: italic;
 }
@@ -138,14 +144,17 @@
 }
 
 .actionButton {
-  padding: 1.2rem 2.5rem;
+  padding: var(--button-padding-lg);
   background: var(--color-black);
   color: var(--color-white);
-  border-radius: 8px;
-  font-size: 1.1rem;
-  font-weight: 700;
+  border: var(--border-width) solid var(--color-black);
+  font-size: var(--button-font-size-md);
+  font-weight: var(--font-weight-bold);
   transition: all 0.2s ease;
   min-width: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .actionButton:hover {
