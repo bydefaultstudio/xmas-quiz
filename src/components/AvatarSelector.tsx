@@ -34,7 +34,7 @@ export default function AvatarSelector({
             <div className={styles.avatarFrame}>
               {player.avatar && typeof player.avatar === 'string' ? (
                 <Image
-                  src={player.avatar}
+                  src={player.avatar as string}
                   alt={player.name}
                   width={120}
                   height={120}
