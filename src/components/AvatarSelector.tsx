@@ -32,7 +32,7 @@ export default function AvatarSelector({
             onClick={() => onSelect(player)}
           >
             <div className={styles.avatarFrame}>
-              {player.avatar ? (
+              {player.avatar && typeof player.avatar === 'string' ? (
                 <Image
                   src={player.avatar}
                   alt={player.name}

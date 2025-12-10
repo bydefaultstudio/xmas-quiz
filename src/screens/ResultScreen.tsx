@@ -69,7 +69,7 @@ export default function ResultScreen() {
           <div className={styles.avatarFrame}>
             {player.avatar ? (
               <Image
-                src={player.avatar}
+                src={player.avatar as string}
                 alt={player.name}
                 width={150}
                 height={150}
