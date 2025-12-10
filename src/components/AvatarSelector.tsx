@@ -32,13 +32,17 @@ export default function AvatarSelector({
             onClick={() => onSelect(player)}
           >
             <div className={styles.avatarFrame}>
-              <Image
-                src={player.avatar}
-                alt={player.name}
-                width={120}
-                height={120}
-                className={styles.avatarImage}
-              />
+              {player.avatar ? (
+                <Image
+                  src={player.avatar}
+                  alt={player.name}
+                  width={120}
+                  height={120}
+                  className={styles.avatarImage}
+                />
+              ) : (
+                <div className={styles.avatarPlaceholder}>{player.name.charAt(0).toUpperCase()}</div>
+              )}
             </div>
             {isSelected && <p className={styles.name}>{player.name}</p>}
           </button>

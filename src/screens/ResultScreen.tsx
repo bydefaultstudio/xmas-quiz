@@ -67,13 +67,17 @@ export default function ResultScreen() {
       <div className={styles.content}>
         <div className={styles.playerSection}>
           <div className={styles.avatarFrame}>
-            <Image
-              src={player.avatar}
-              alt={player.name}
-              width={150}
-              height={150}
-              className={styles.avatar}
-            />
+            {player.avatar ? (
+              <Image
+                src={player.avatar}
+                alt={player.name}
+                width={150}
+                height={150}
+                className={styles.avatar}
+              />
+            ) : (
+              <div className={styles.avatarPlaceholder}>{player.name.charAt(0).toUpperCase()}</div>
+            )}
           </div>
           <h1 className={styles.playerName}>{player.name}</h1>
           <div className={styles.score}>
