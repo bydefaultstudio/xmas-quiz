@@ -2,9 +2,12 @@ export interface Question {
   id: string;
   category: string;
   difficulty: 'easy' | 'medium' | 'hard';
-  question: string;
+  question: string; // The selected question variant (or main question if no variants)
+  question_variants?: string[]; // Array of question variants (optional for backwards compatibility)
   answer: string;
-  options: string[];
+  acceptable_answers?: string[]; // Array of acceptable answer variants (optional for backwards compatibility)
+  options: string[]; // Multiple choice options (mapped from multiple_choice in new format)
+  multiple_choice?: string[]; // Original multiple_choice field from markdown (optional)
 }
 
 export interface Player {

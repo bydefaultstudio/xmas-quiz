@@ -10,6 +10,7 @@ import {
   PlayerRound,
 } from '@/types';
 import { selectRandomQuestions } from '@/data/parseQuestions';
+import { checkAnswer, checkMultipleChoiceAnswer } from '@/utils/answerValidation';
 
 interface QuizStore extends GameState {
   allQuestions: Question[];
@@ -232,9 +233,24 @@ export const useGameStore = create<QuizStore>()(
 
         if (!currentQuestion || !currentState.selectedAnswer) return;
 
-        const isCorrect =
-          currentState.selectedAnswer.trim().toLowerCase() ===
-          currentQuestion.answer.trim().toLowerCase();
+        // Use appropriate validation based on mode
+        let isCorrect: boolean;
+        if (multipleChoiceActive) {
+          // Multiple choice: exact matching against acceptable answers (no fuzzy)
+          isCorrect = checkMultipleChoiceAnswer(
+            currentState.selectedAnswer,
+            currentQuestion.answer,
+            currentQuestion.acceptable_answers || []
+          );
+        } else {
+          // Text input: normalization + acceptable answers + fuzzy matching
+          isCorrect = checkAnswer(
+            currentState.selectedAnswer,
+            currentQuestion.answer,
+            currentQuestion.acceptable_answers || [],
+            0.75 // Fuzzy threshold
+          );
+        }
 
         const { player: pointsPlayer, friend: pointsFriend } =
           get().calculateScore();

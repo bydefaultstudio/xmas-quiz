@@ -1,6 +1,7 @@
 'use client';
 
 import { Question } from '@/types';
+import { checkMultipleChoiceAnswer } from '@/utils/answerValidation';
 import CheckIcon from './icons/CheckIcon';
 import CrossIcon from './icons/CrossIcon';
 import styles from './MultiChoiceGrid.module.css';
@@ -20,6 +21,15 @@ export default function MultiChoiceGrid({
   isSubmitted,
   isCorrect,
 }: MultiChoiceGridProps) {
+  // Check if an option is correct using acceptable_answers
+  const isOptionCorrect = (option: string): boolean => {
+    return checkMultipleChoiceAnswer(
+      option,
+      question.answer,
+      question.acceptable_answers || []
+    );
+  };
+
   const getButtonClass = (option: string) => {
     if (!isSubmitted) {
       return selectedAnswer === option ? styles.selected : styles.option;
@@ -27,9 +37,9 @@ export default function MultiChoiceGrid({
 
     // After submission
     const isSelected = selectedAnswer === option;
-    const isCorrectAnswer = option === question.answer;
+    const optionIsCorrect = isOptionCorrect(option);
 
-    if (isCorrectAnswer) {
+    if (optionIsCorrect) {
       return styles.correct;
     }
     if (isSelected && !isCorrect) {
@@ -42,8 +52,8 @@ export default function MultiChoiceGrid({
     <div className={styles.grid}>
       {question.options.map((option, index) => {
         const isSelected = selectedAnswer === option;
-        const isCorrectAnswer = option === question.answer;
-        const showCheckmark = isSubmitted && isCorrectAnswer;
+        const optionIsCorrect = isOptionCorrect(option);
+        const showCheckmark = isSubmitted && optionIsCorrect;
         const showCross = isSubmitted && isSelected && !isCorrect;
 
         return (

@@ -13,9 +13,16 @@ export default function Home() {
   const { currentScreen, allQuestions, setAllQuestions } = useGameStore();
 
   useEffect(() => {
-    // Load questions on mount
+    // Load questions on mount - try new format first, fallback to old format
     if (allQuestions.length === 0) {
-      fetch('/questrions.md')
+      fetch('/questions.md')
+        .then((res) => {
+          if (!res.ok) {
+            // Fallback to old format if new file doesn't exist
+            return fetch('/questrions.md');
+          }
+          return res;
+        })
         .then((res) => res.text())
         .then((text) => {
           const { parseQuestions } = require('@/data/parseQuestions');
