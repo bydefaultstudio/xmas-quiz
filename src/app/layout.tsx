@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import '../styles/globals.css';
 
 export const metadata: Metadata = {
-  title: 'Xmas Quiz',
+  title: '2025 Quiz',
   description: 'By Default Pub Quiz',
 };
 

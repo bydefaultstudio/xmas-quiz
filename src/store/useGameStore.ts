@@ -185,7 +185,13 @@ export const useGameStore = create<QuizStore>()(
       },
 
       selectFriend: (friend) => {
-        const { currentQuestionIndex, questionStates } = get();
+        const { players, currentQuestionIndex, questionStates } = get();
+        
+        // Prevent Ask a Friend if there's only one player
+        if (players.length <= 1) {
+          return;
+        }
+        
         const newStates = [...questionStates];
         newStates[currentQuestionIndex] = {
           ...newStates[currentQuestionIndex],
@@ -248,14 +254,23 @@ export const useGameStore = create<QuizStore>()(
       },
 
       calculateScore: () => {
-        const { multipleChoiceActive, friendSelected } = get();
+        const { multipleChoiceActive, friendSelected, players } = get();
+
+        // If there's only one player, friend points are always 0
+        if (players.length <= 1) {
+          if (!multipleChoiceActive) {
+            return { player: 4, friend: 0 };
+          } else {
+            return { player: 2, friend: 0 };
+          }
+        }
 
         if (!multipleChoiceActive && !friendSelected) {
           return { player: 4, friend: 0 };
         } else if (multipleChoiceActive && !friendSelected) {
           return { player: 2, friend: 0 };
         } else if (!multipleChoiceActive && friendSelected) {
-          return { player: 1, friend: 1 };
+          return { player: 2, friend: 2 };
         } else {
           return { player: 1, friend: 1 };
         }

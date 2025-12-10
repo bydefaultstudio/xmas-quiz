@@ -103,6 +103,9 @@ export default function QuestionScreen() {
 
   // Filter out active player for Ask A Friend
   const availableFriends = players.filter((p) => p.id !== activePlayer.id);
+  
+  // Disable Ask A Friend if there's only one player
+  const canAskFriend = players.length > 1;
 
   return (
     <div className={styles.container}>
@@ -119,9 +122,14 @@ export default function QuestionScreen() {
           )}
         </button>
         <button
-          className={styles.headerButton}
-          onClick={() => !isSubmitted && setShowAskFriend(true)}
-          disabled={isSubmitted}
+          className={`${styles.headerButton} ${!canAskFriend ? styles.disabled : ''}`}
+          onClick={() => {
+            if (!isSubmitted && canAskFriend) {
+              setShowAskFriend(true);
+            }
+          }}
+          disabled={isSubmitted || !canAskFriend}
+          title={!canAskFriend ? 'Need at least 2 players to use Ask a Friend' : ''}
         >
           ASK A FRIEND
         </button>
@@ -208,7 +216,7 @@ export default function QuestionScreen() {
         </div>
       </div>
 
-      {showAskFriend && (
+      {showAskFriend && canAskFriend && (
         <AskFriendModal
           players={availableFriends}
           activePlayer={activePlayer}

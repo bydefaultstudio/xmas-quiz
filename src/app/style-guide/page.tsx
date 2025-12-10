@@ -34,7 +34,7 @@ export default function StyleGuidePage() {
     <div className={styles.container}>
       <div className={styles.content}>
         <header className={styles.header}>
-          <h1 className={styles.mainTitle}>Xmas Quiz Style Guide</h1>
+          <h1 className={styles.mainTitle}>2025 Quiz Style Guide</h1>
           <p className={styles.subtitle}>
             Complete visual documentation of all UI elements, components, and design patterns used in the app.
           </p>
@@ -486,38 +486,9 @@ export default function StyleGuidePage() {
           </div>
         </section>
 
-        {/* 8. Player Avatars */}
+        {/* 8. Layout Rules & Spacing */}
         <section className={styles.section}>
-          <h2 className={styles.sectionTitle}>8. Player Avatars</h2>
-          <div className={styles.avatarShowcase}>
-            <div className={styles.avatarItem}>
-              <div className={styles.avatarFrame}>
-                <div className={styles.avatarPlaceholder}>A</div>
-              </div>
-              <p className={styles.stateLabel}>Default Avatar</p>
-              <div className={styles.specs}>
-                <p><strong>Size:</strong> 150px × 150px</p>
-                <p><strong>Border-radius:</strong> 50% (circular)</p>
-                <p><strong>Border:</strong> 3px solid #000000</p>
-                <p><strong>Background:</strong> #FFFFFF</p>
-              </div>
-            </div>
-            <div className={styles.avatarItem}>
-              <div className={styles.avatarFrameActive}>
-                <div className={styles.avatarPlaceholder}>B</div>
-              </div>
-              <p className={styles.stateLabel}>Active Avatar</p>
-              <div className={styles.specs}>
-                <p><strong>Border:</strong> 3px solid #000000</p>
-                <p><strong>Background:</strong> #FFFFFF</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* 9. Layout Rules & Spacing */}
-        <section className={styles.section}>
-          <h2 className={styles.sectionTitle}>9. Layout Rules & Spacing</h2>
+          <h2 className={styles.sectionTitle}>8. Layout Rules & Spacing</h2>
           <div className={styles.spacingGrid}>
             <div className={styles.spacingItem}>
               <div className={styles.spacingBox} style={{ width: '16px', height: '16px' }}></div>
@@ -650,9 +621,9 @@ import ArrowLeftIcon from '@/components/icons/ArrowLeftIcon';
           </div>
         </section>
 
-        {/* 11. Score Badge */}
+        {/* 10. Score Badge */}
         <section className={styles.section}>
-          <h2 className={styles.sectionTitle}>11. Score Badge</h2>
+          <h2 className={styles.sectionTitle}>10. Score Badge</h2>
           <div className={styles.badgeShowcase}>
             <ScoreBadge points={4} />
             <ScoreBadge points={2} friendPoints={2} />

@@ -1,4 +1,4 @@
-# Xmas Quiz App
+# 2025 Quiz App
 
 Interactive quiz application built with Next.js, React, and TypeScript.
 

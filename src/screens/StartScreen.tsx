@@ -67,7 +67,7 @@ export default function StartScreen() {
     <>
       <div className={styles.container}>
         <div className={styles.content}>
-          <h1 className={styles.title}>Xmas Quiz</h1>
+          <h1 className={styles.title}>2025 Quiz</h1>
           <div className={styles.buttonGroup}>
             <button className={styles.startButton} onClick={handleStartGame}>
               Start Game

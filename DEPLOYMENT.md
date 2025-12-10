@@ -1,6 +1,6 @@
 # Deployment Guide
 
-Your Xmas Quiz app has been successfully uploaded to GitHub: https://github.com/bydefaultstudio/xmas-quiz.git
+Your 2025 Quiz app has been successfully uploaded to GitHub: https://github.com/bydefaultstudio/xmas-quiz.git
 
 ## Deploy to Vercel (Recommended - Free & Easy)
 
@@ -13,7 +13,7 @@ Vercel is the easiest way to deploy Next.js apps and get a public URL. Here's ho
 2. **Click "Add New Project"**
 
 3. **Import your GitHub repository:**
-   - Select the `xmas-quiz` repository
+   - Select the repository (note: GitHub repo name may still be `xmas-quiz`)
    - Click "Import"
 
 4. **Configure the project:**
@@ -27,7 +27,7 @@ Vercel is the easiest way to deploy Next.js apps and get a public URL. Here's ho
 6. **Wait for deployment** (usually takes 1-2 minutes)
 
 7. **Get your public URL!** Vercel will give you a URL like:
-   - `https://xmas-quiz.vercel.app`
+   - `https://2025-quiz.vercel.app` (or your custom domain)
    - You can customize the domain name in settings
 
 ### Option 2: Deploy via Vercel CLI
