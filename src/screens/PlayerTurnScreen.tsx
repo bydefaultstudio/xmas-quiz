@@ -19,11 +19,11 @@ export default function PlayerTurnScreen() {
     <div className={styles.container}>
       <div className={styles.content}>
         <h1 className={styles.title}>
-          {activePlayer.name}, it's your turn!
+          {activePlayer.name}, it&apos;s your turn!
         </h1>
         <p className={styles.subtitle}>Are you ready?</p>
         <button className={styles.startButton} onClick={handleStartTurn}>
-          Yes, let's go!
+          Yes, let&apos;s go!
         </button>
       </div>
     </div>
