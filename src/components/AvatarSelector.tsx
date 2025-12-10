@@ -1,7 +1,6 @@
 'use client';
 
 import { Player } from '@/types';
-import Image from 'next/image';
 import styles from './AvatarSelector.module.css';
 
 interface AvatarSelectorProps {
@@ -32,17 +31,7 @@ export default function AvatarSelector({
             onClick={() => onSelect(player)}
           >
             <div className={styles.avatarFrame}>
-              {player.avatar && typeof player.avatar === 'string' ? (
-                <Image
-                  src={player.avatar as string}
-                  alt={player.name}
-                  width={120}
-                  height={120}
-                  className={styles.avatarImage}
-                />
-              ) : (
-                <div className={styles.avatarPlaceholder}>{player.name.charAt(0).toUpperCase()}</div>
-              )}
+              <div className={styles.avatarPlaceholder}>{player.name.charAt(0).toUpperCase()}</div>
             </div>
             {isSelected && <p className={styles.name}>{player.name}</p>}
           </button>

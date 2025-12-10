@@ -1,10 +1,8 @@
 'use client';
 
 import { useEffect } from 'react';
-import Image from 'next/image';
 import { useGameStore } from '@/store/useGameStore';
 import { useLeaderboardStore } from '@/store/useLeaderboardStore';
-import { PLAYERS } from '@/data/players';
 import { selectRandomQuestions } from '@/data/parseQuestions';
 import CheckIcon from '@/components/icons/CheckIcon';
 import CrossIcon from '@/components/icons/CrossIcon';
@@ -35,7 +33,6 @@ export default function ResultScreen() {
   }, [endRound, addResult]);
 
   const totalScore = questionStates.reduce((sum, state) => sum + state.pointsPlayer, 0);
-  const player = activePlayer ? PLAYERS.find((p) => p.id === activePlayer.id) : null;
 
   const handlePlayAgain = () => {
     if (allQuestions.length > 0) {
@@ -58,7 +55,7 @@ export default function ResultScreen() {
     setCurrentScreen('leaderboard');
   };
 
-  if (!player) {
+  if (!activePlayer) {
     return <div>Loading...</div>;
   }
 
@@ -67,19 +64,9 @@ export default function ResultScreen() {
       <div className={styles.content}>
         <div className={styles.playerSection}>
           <div className={styles.avatarFrame}>
-            {player.avatar ? (
-              <Image
-                src={player.avatar as string}
-                alt={player.name}
-                width={150}
-                height={150}
-                className={styles.avatar}
-              />
-            ) : (
-              <div className={styles.avatarPlaceholder}>{player.name.charAt(0).toUpperCase()}</div>
-            )}
+            <div className={styles.avatarPlaceholder}>{activePlayer.name.charAt(0).toUpperCase()}</div>
           </div>
-          <h1 className={styles.playerName}>{player.name}</h1>
+          <h1 className={styles.playerName}>{activePlayer.name}</h1>
           <div className={styles.score}>
             <span className={styles.scoreLabel}>Total Score</span>
             <span className={styles.scoreValue}>{totalScore} Points</span>
