@@ -16,7 +16,7 @@
   background: var(--color-beige);
   border-radius: 16px;
   padding: 3rem;
-  max-width: 900px;
+  max-width: 600px;
   width: 100%;
   max-height: 90vh;
   overflow-y: auto;
@@ -31,6 +31,31 @@
   color: var(--color-black);
 }
 
+.playersList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.playerButton {
+  padding: 1.5rem;
+  background: var(--color-white);
+  border: 2px solid var(--color-black);
+  border-radius: 8px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-black);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+}
+
+.playerButton:hover {
+  background: var(--color-black);
+  color: var(--color-white);
+}
+
 .closeButton {
   margin-top: 2rem;
   width: 100%;
@@ -41,6 +66,7 @@
   font-size: 1.1rem;
   font-weight: 700;
   transition: all 0.2s ease;
+  cursor: pointer;
 }
 
 .closeButton:hover {

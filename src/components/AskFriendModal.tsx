@@ -1,7 +1,6 @@
 'use client';
 
 import { Player } from '@/types';
-import AvatarSelector from './AvatarSelector';
 import styles from './AskFriendModal.module.css';
 
 interface AskFriendModalProps {
@@ -26,12 +25,19 @@ export default function AskFriendModal({
     <div className={styles.overlay} onClick={onClose}>
       <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
         <h2 className={styles.title}>SELECT PLAYER</h2>
-        <AvatarSelector
-          players={players}
-          selectedPlayer={null}
-          onSelect={handleSelect}
-          excludePlayerId={activePlayer?.id}
-        />
+        <div className={styles.playersList}>
+          {players
+            .filter((p) => p.id !== activePlayer?.id)
+            .map((player) => (
+              <button
+                key={player.id}
+                className={styles.playerButton}
+                onClick={() => handleSelect(player)}
+              >
+                {player.name}
+              </button>
+            ))}
+        </div>
         <button className={styles.closeButton} onClick={onClose}>
           Cancel
         </button>
@@ -39,4 +45,3 @@ export default function AskFriendModal({
     </div>
   );
 }
-

@@ -10,7 +10,9 @@ export interface Question {
 export interface Player {
   id: string;
   name: string;
-  avatar: string;
+  avatar?: string; // Optional for multi-player mode
+  displayNumber?: number; // Human-friendly number (#1, #2, etc.)
+  createdAt?: number; // Timestamp for sorting
 }
 
 export interface QuestionState {
@@ -41,16 +43,27 @@ export interface LeaderboardEntry {
   lastPlayed: number;
 }
 
-export type Screen = 'avatar-select' | 'question' | 'result' | 'leaderboard';
+export type Screen = 'start' | 'player-setup' | 'player-turn' | 'question' | 'game-summary' | 'leaderboard';
+
+export interface PlayerRound {
+  playerId: string;
+  questions: Question[];
+  questionStates: QuestionState[];
+  completed: boolean;
+}
 
 export interface GameState {
+  players: Player[]; // All players in the game
+  currentPlayerIndex: number; // Index of player currently playing
   activePlayer: Player | null;
   currentScreen: Screen;
   currentRound: Question[];
   currentQuestionIndex: number;
   questionStates: QuestionState[];
+  playerRounds: PlayerRound[]; // Track each player's round
   friendSelected: Player | null;
   multipleChoiceActive: boolean;
   usedQuestionIds: string[]; // Track questions used during active game
+  gameInProgress: boolean;
 }
 

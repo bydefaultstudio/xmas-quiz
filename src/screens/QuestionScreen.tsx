@@ -1,9 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Image from 'next/image';
 import { useGameStore } from '@/store/useGameStore';
-import { PLAYERS } from '@/data/players';
 import MultiChoiceGrid from '@/components/MultiChoiceGrid';
 import AskFriendModal from '@/components/AskFriendModal';
 import ScoreBadge from '@/components/ScoreBadge';
@@ -15,6 +13,7 @@ export default function QuestionScreen() {
 
   const {
     activePlayer,
+    players,
     currentRound,
     currentQuestionIndex,
     questionStates,
@@ -25,14 +24,17 @@ export default function QuestionScreen() {
     selectFriend,
     submitAnswer,
     nextQuestion,
-    setCurrentScreen,
     calculateScore,
+    completeCurrentPlayerRound,
+    endGame,
+    currentPlayerIndex,
   } = useGameStore();
 
   const currentQuestion = currentRound[currentQuestionIndex];
   const currentState = questionStates[currentQuestionIndex];
   const isSubmitted = currentState?.isCorrect !== null;
   const selectedAnswer = currentState?.selectedAnswer || textAnswer;
+  const isLastQuestion = currentQuestionIndex === currentRound.length - 1;
 
   // Reset text answer when question changes or mode changes
   useEffect(() => {
@@ -54,42 +56,52 @@ export default function QuestionScreen() {
 
   const handleSubmit = () => {
     if (!selectedAnswer || isSubmitted) return;
-    
+
     if (multipleChoiceActive && !currentState?.selectedAnswer) {
-      return; // Need to select an option
+      return;
     }
-    
+
     if (!multipleChoiceActive && !textAnswer.trim()) {
-      return; // Need text answer
+      return;
     }
 
     submitAnswer();
-    
+
     // Auto-advance after 2 seconds
     setTimeout(() => {
-      nextQuestion();
+      if (isLastQuestion) {
+        // Round complete - move to next player or scoreboard
+        completeCurrentPlayerRound();
+      } else {
+        nextQuestion();
+      }
     }, 2000);
   };
 
   const handleMultipleChoiceToggle = () => {
     if (!isSubmitted) {
       toggleMultipleChoice();
-      setTextAnswer(''); // Clear text when switching to MC
-      // Clear selected answer when toggling
+      setTextAnswer('');
       if (currentState?.selectedAnswer) {
         selectAnswer('');
       }
     }
   };
 
-  const { player: potentialPlayerPoints, friend: potentialFriendPoints } = calculateScore();
+  const { player: potentialPlayerPoints, friend: potentialFriendPoints } =
+    calculateScore();
   const totalPotential = potentialPlayerPoints + potentialFriendPoints;
 
   if (!currentQuestion || !activePlayer) {
     return <div>Loading...</div>;
   }
 
-  const friendPlayer = friendSelected;
+  const friendPlayer = friendSelected
+    ? players.find((p) => p.id === friendSelected.id)
+    : null;
+
+  // Filter out active player for Ask A Friend
+  const availableFriends = players.filter((p) => p.id !== activePlayer.id);
 
   return (
     <div className={styles.container}>
@@ -113,41 +125,22 @@ export default function QuestionScreen() {
           ASK A FRIEND
         </button>
         <button
-          className={styles.headerButton}
-          onClick={() => setCurrentScreen('leaderboard')}
+          className={styles.endGameButton}
+          onClick={endGame}
         >
-          SCOREBOARD
+          END GAME
         </button>
       </div>
 
       <div className={styles.content}>
         <div className={styles.playerInfo}>
-          <div className={styles.avatarContainer}>
-            <div className={styles.avatarFrame}>
-              <Image
-                src={activePlayer.avatar}
-                alt={activePlayer.name}
-                width={100}
-                height={100}
-                className={styles.avatar}
-              />
-            </div>
-            {friendPlayer && (
-              <div className={styles.avatarFrame}>
-                <Image
-                  src={friendPlayer.avatar}
-                  alt={friendPlayer.name}
-                  width={100}
-                  height={100}
-                  className={styles.avatar}
-                />
-              </div>
-            )}
-          </div>
           <h2 className={styles.playerName}>
             {activePlayer.name}
             {friendPlayer && ` + ${friendPlayer.name}`}
           </h2>
+          <div className={styles.playerProgress}>
+            Player {currentPlayerIndex + 1} of {players.length}
+          </div>
         </div>
 
         <div className={styles.questionCounter}>
@@ -212,7 +205,7 @@ export default function QuestionScreen() {
 
       {showAskFriend && (
         <AskFriendModal
-          players={PLAYERS}
+          players={availableFriends}
           activePlayer={activePlayer}
           onSelectFriend={selectFriend}
           onClose={() => setShowAskFriend(false)}
@@ -221,4 +214,3 @@ export default function QuestionScreen() {
     </div>
   );
 }
-

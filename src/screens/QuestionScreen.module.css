@@ -12,6 +12,24 @@
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
+  flex-wrap: wrap;
+}
+
+.endGameButton {
+  padding: 1rem;
+  background: var(--color-red);
+  color: var(--color-white);
+  border: 2px solid var(--color-red);
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 700;
+  transition: all 0.2s ease;
+  flex: 1;
+  min-width: 150px;
+}
+
+.endGameButton:hover {
+  background: rgba(201, 74, 58, 0.8);
 }
 
 .headerButton {
@@ -54,39 +72,21 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  gap: 0.5rem;
   margin-bottom: 2rem;
 }
 
-.avatarContainer {
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-}
-
-.avatarFrame {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 3px solid var(--color-black);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--color-white);
-}
-
-.avatar {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
 .playerName {
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: 700;
   color: var(--color-black);
   text-align: center;
+}
+
+.playerProgress {
+  font-size: 1rem;
+  color: rgba(0, 0, 0, 0.6);
+  font-style: italic;
 }
 
 .questionCounter {

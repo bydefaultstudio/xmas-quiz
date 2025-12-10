@@ -1,11 +1,12 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { RoundResult, LeaderboardEntry } from '@/types';
-import { PLAYERS } from '@/data/players';
+import { RoundResult, LeaderboardEntry, Player } from '@/types';
 
 interface LeaderboardStore {
   results: RoundResult[];
+  playerRegistry: Record<string, string>; // playerId -> playerName (kept for backward compatibility)
   addResult: (result: RoundResult) => void;
+  registerPlayers: (players: Player[]) => void;
   getLeaderboard: () => LeaderboardEntry[];
   clearLeaderboard: () => void;
 }
@@ -14,11 +15,22 @@ export const useLeaderboardStore = create<LeaderboardStore>()(
   persist(
     (set, get) => ({
       results: [],
+      playerRegistry: {},
 
       addResult: (result) => {
         set((state) => ({
           results: [...state.results, result],
         }));
+      },
+
+      registerPlayers: (players: Player[]) => {
+        set((state) => {
+          const updatedRegistry = { ...state.playerRegistry };
+          players.forEach((player) => {
+            updatedRegistry[player.id] = player.name;
+          });
+          return { playerRegistry: updatedRegistry };
+        });
       },
 
       getLeaderboard: () => {

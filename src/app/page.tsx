@@ -2,26 +2,48 @@
 
 import { useEffect } from 'react';
 import { useGameStore } from '@/store/useGameStore';
-import AvatarSelectScreen from '@/screens/AvatarSelectScreen';
+import StartScreen from '@/screens/StartScreen';
+import PlayerSetupScreen from '@/screens/PlayerSetupScreen';
+import PlayerTurnScreen from '@/screens/PlayerTurnScreen';
 import QuestionScreen from '@/screens/QuestionScreen';
-import ResultScreen from '@/screens/ResultScreen';
-import ScoreboardScreen from '@/screens/ScoreboardScreen';
+import GameSummaryScreen from '@/screens/GameSummaryScreen';
+import LeaderboardScreen from '@/screens/LeaderboardScreen';
 
 export default function Home() {
-  const { currentScreen } = useGameStore();
+  const { currentScreen, allQuestions, setAllQuestions } = useGameStore();
+
+  useEffect(() => {
+    // Load questions on mount
+    if (allQuestions.length === 0) {
+      fetch('/questrions.md')
+        .then((res) => res.text())
+        .then((text) => {
+          const { parseQuestions } = require('@/data/parseQuestions');
+          const questions = parseQuestions(text);
+          setAllQuestions(questions);
+        })
+        .catch((err) => {
+          console.error('Failed to load questions:', err);
+        });
+    }
+  }, [allQuestions.length, setAllQuestions]);
 
   const renderScreen = () => {
     switch (currentScreen) {
-      case 'avatar-select':
-        return <AvatarSelectScreen />;
+      case 'start':
+        return <StartScreen />;
+      case 'player-setup':
+        return <PlayerSetupScreen />;
+      case 'player-turn':
+        return <PlayerTurnScreen />;
       case 'question':
         return <QuestionScreen />;
-      case 'result':
-        return <ResultScreen />;
+      case 'game-summary':
+        return <GameSummaryScreen />;
       case 'leaderboard':
-        return <ScoreboardScreen />;
+        return <LeaderboardScreen />;
       default:
-        return <AvatarSelectScreen />;
+        return <StartScreen />;
     }
   };
 
