@@ -63,12 +63,6 @@ export default function ResultScreen() {
     <div className={styles.container}>
       <div className={styles.content}>
         <div className={styles.playerSection}>
-<<<<<<< HEAD
-=======
-          <div className={styles.avatarFrame}>
-            <div className={styles.avatarPlaceholder}>{activePlayer.name.charAt(0).toUpperCase()}</div>
-          </div>
->>>>>>> 063cfb713e2dbe84da90f6af25061bcf9790f2bf
           <h1 className={styles.playerName}>{activePlayer.name}</h1>
           <div className={styles.score}>
             <span className={styles.scoreLabel}>Total Score</span>
