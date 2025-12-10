@@ -22,7 +22,7 @@ export default function InstructionsModal({ isOpen, onClose }: InstructionsModal
             <ul className={styles.list}>
               <li>Choose players before starting a round.</li>
               <li>Each player gets 5 questions per round.</li>
-              <li>Questions can be typed answers or multiple choice depending on the player&apos;s choice.</li>
+              <li>Questions can be typed answers or multiple choice depending on the player's choice.</li>
             </ul>
           </section>
 
@@ -33,10 +33,10 @@ export default function InstructionsModal({ isOpen, onClose }: InstructionsModal
                 <strong>If answered normally:</strong> 4 points
               </li>
               <li>
-                <strong>If &quot;Multiple Choice&quot; is used:</strong> 2 points
+                <strong>If "Multiple Choice" is used:</strong> 2 points
               </li>
               <li>
-                <strong>If &quot;Ask a Friend&quot; is used:</strong>
+                <strong>If "Ask a Friend" is used:</strong>
                 <ul className={styles.sublist}>
                   <li>Player gets 2 points</li>
                   <li>The chosen friend gets 2 helper points</li>
